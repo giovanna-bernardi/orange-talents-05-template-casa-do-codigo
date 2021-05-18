@@ -2,20 +2,22 @@ package br.com.zupacademy.giovanna.casadocodigo.validacao;
 
 import br.com.zupacademy.giovanna.casadocodigo.autor.AutorRepository;
 import br.com.zupacademy.giovanna.casadocodigo.autor.dto.AutorRequest;
+import br.com.zupacademy.giovanna.casadocodigo.categoria.CategoriaRepository;
+import br.com.zupacademy.giovanna.casadocodigo.categoria.dto.CategoriaRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 @Component
-public class EmailUnicoValidator implements Validator {
+public class NomeUnicoCategoriaValidator implements Validator {
 
     @Autowired
-    private AutorRepository autorRepository;
+    private CategoriaRepository categoriaRepository;
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return AutorRequest.class.isAssignableFrom(aClass);
+        return CategoriaRequest.class.isAssignableFrom(aClass);
     }
 
     @Override
@@ -23,12 +25,11 @@ public class EmailUnicoValidator implements Validator {
         if(errors.hasErrors()){
             return;
         }
-        AutorRequest request = (AutorRequest) o;
+        CategoriaRequest request = (CategoriaRequest) o;
 
-        System.out.println(autorRepository.existsByEmail(request.getEmail()));
-        if(autorRepository.existsByEmail(request.getEmail())){
-            errors.rejectValue("email", null,
-                    "Já existe um(a) autor(a) com este e-mail no banco: " + request.getEmail());
+        if(categoriaRepository.existsByNome(request.getNome())){
+            errors.rejectValue("nome", null,
+                    "Já existe uma categoria com este nome no banco: " + request.getNome());
         }
 
     }
