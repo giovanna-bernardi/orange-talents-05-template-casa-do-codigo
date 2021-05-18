@@ -29,6 +29,7 @@ public class Autor {
     @Column(nullable = false)
     private LocalDateTime instanteRegistro = LocalDateTime.now();
 
+    @Deprecated
     public Autor() {
     }
 

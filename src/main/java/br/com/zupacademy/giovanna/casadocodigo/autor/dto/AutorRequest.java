@@ -4,7 +4,6 @@ import br.com.zupacademy.giovanna.casadocodigo.autor.Autor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class AutorRequest {
@@ -28,5 +27,9 @@ public class AutorRequest {
 
     public Autor converteParaEntidade() {
         return new Autor(this.nome, this.email, this.descricao);
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
