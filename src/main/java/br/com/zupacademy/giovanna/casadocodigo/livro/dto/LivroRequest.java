@@ -8,7 +8,6 @@ import br.com.zupacademy.giovanna.casadocodigo.livro.Livro;
 import br.com.zupacademy.giovanna.casadocodigo.validation.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.ISBN;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.util.Assert;
 
 import javax.validation.constraints.*;
@@ -70,7 +69,9 @@ public class LivroRequest {
 
     /* Precisa desse setter para que o jackson consiga desserializar
      * o json no formato xx/xx/xxxx, pelo
-     * construtor ele não conseguiu. */
+     * construtor ele não conseguiu.
+     * Obs: funciona com LocalDate, com LocalDateTime não deu certo fazer assim.
+     * */
 
     public void setDataPublicacao(LocalDate dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
