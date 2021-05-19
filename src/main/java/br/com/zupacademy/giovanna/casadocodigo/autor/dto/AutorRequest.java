@@ -1,6 +1,7 @@
 package br.com.zupacademy.giovanna.casadocodigo.autor.dto;
 
 import br.com.zupacademy.giovanna.casadocodigo.autor.Autor;
+import br.com.zupacademy.giovanna.casadocodigo.validation.UniqueValue;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -13,6 +14,7 @@ public class AutorRequest {
 
     @NotBlank(message = "O campo e-mail não pode ser nulo nem vazio")
     @Email(message = "O e-mail deve ter um formato válido")
+    @UniqueValue(domainClass = Autor.class, fieldName = "email", message = "O campo e-mail deve ser único")
     private String email;
 
     @NotBlank(message = "O campo descricao não pode ser nulo nem vazio")
