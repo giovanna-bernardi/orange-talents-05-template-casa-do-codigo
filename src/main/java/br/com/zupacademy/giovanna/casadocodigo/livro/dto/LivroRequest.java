@@ -5,6 +5,7 @@ import br.com.zupacademy.giovanna.casadocodigo.autor.AutorRepository;
 import br.com.zupacademy.giovanna.casadocodigo.categoria.Categoria;
 import br.com.zupacademy.giovanna.casadocodigo.categoria.CategoriaRepository;
 import br.com.zupacademy.giovanna.casadocodigo.livro.Livro;
+import br.com.zupacademy.giovanna.casadocodigo.validation.ExistsId;
 import br.com.zupacademy.giovanna.casadocodigo.validation.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.ISBN;
@@ -47,9 +48,11 @@ public class LivroRequest {
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate dataPublicacao;
 
+    @ExistsId(entity = Categoria.class, fieldName = "id")
     @NotNull(message = "O id da categoria não pode ser nulo")
     private Long categoriaId;
 
+    @ExistsId(entity = Autor.class, fieldName = "id")
     @NotNull(message = "O id do autor não pode ser nulo")
     private Long autorId;
 

@@ -5,12 +5,12 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = {UniqueValueValidator.class})
+@Constraint(validatedBy = {ExistsIdValidator.class})
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UniqueValue {
+public @interface ExistsId {
 
-    String message() default "O campo deve ser único";
+    String message() default "O registro deve existir no banco";
 
     Class<?>[] groups() default {};
 
@@ -18,5 +18,6 @@ public @interface UniqueValue {
 
     String fieldName();
 
-    Class<?> domainClass();
+    Class<?> entity();
 }
+

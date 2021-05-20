@@ -26,7 +26,7 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
 
     @Override
     public boolean isValid(Object o, ConstraintValidatorContext constraintValidatorContext) {
-        Query query = em.createQuery("select c from " + domainClass.getName() + " c where " + domainAttribute + " = :fieldName");
+        Query query = em.createQuery("select 1 from " + domainClass.getName() + " where " + domainAttribute + " = :fieldName");
         query.setParameter("fieldName", o);
         List<?> list = query.getResultList();
         Assert.state(list.size() <= 1, "Foi encontrado mais de um "+domainAttribute+" = "+ o + " na tabela de "+ domainClass.getName().substring(domainClass.getName().lastIndexOf('.') + 1));
