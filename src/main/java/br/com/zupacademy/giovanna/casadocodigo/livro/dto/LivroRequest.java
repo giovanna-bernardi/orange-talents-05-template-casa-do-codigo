@@ -84,8 +84,8 @@ public class LivroRequest {
         @NotNull Optional<Autor> autor = autorRepository.findById(this.autorId);
         @NotNull Optional<Categoria> categoria = categoriaRepository.findById(this.categoriaId);
 
-        Assert.state(autor.isPresent(),"Você esta querendo cadastrar um livro para um autor que nao existe no banco " + this.autorId);
-        Assert.state(categoria.isPresent(),"Você esta querendo cadastrar um livro para uma categoria que nao existe no banco " + this.categoriaId);
+        Assert.state(autor.isPresent(),"Você está querendo cadastrar um livro para um autor que nao existe no banco " + this.autorId);
+        Assert.state(categoria.isPresent(),"Você está querendo cadastrar um livro para uma categoria que nao existe no banco " + this.categoriaId);
 
         return new Livro(this.titulo, this.resumo, this.sumario,
                 this.preco, this.numeroPaginas, this.isbn, this.dataPublicacao, categoria.get(), autor.get());
